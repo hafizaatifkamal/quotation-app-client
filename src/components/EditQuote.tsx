@@ -33,10 +33,18 @@ const EditQuote: React.FC = () => {
     setEditedQuote({ ...editedQuote, [name]: value });
   };
 
+  const formatExpiryDate = (date: string | undefined): string => {
+    if (!date) return ""; // Handle empty date gracefully
+
+    // Format expiryDate as "yyyy-MM-dd"
+    const isoDate = new Date(date).toISOString();
+    return isoDate.split("T")[0];
+  };
+
   const handleSave = async (event: any) => {
     event.preventDefault();
     await dispatch(updateQuote(editedQuote));
-    setEditedQuote(editedQuote);
+    dispatch(fetchQuotesDetails(id));
     setIsEditing(false);
   };
 
@@ -70,7 +78,7 @@ const EditQuote: React.FC = () => {
                 <input
                   type="date"
                   name="expiryDate"
-                  value={editedQuote.expiryDate}
+                  value={formatExpiryDate(editedQuote.expiryDate)}
                   onChange={handleChange}
                   className="border border-gray-300 rounded p-2 w-full"
                 />
@@ -123,7 +131,7 @@ const EditQuote: React.FC = () => {
                 <input
                   type="date"
                   name="expiryDate"
-                  value={quote.expiryDate}
+                  value={formatExpiryDate(quote?.expiryDate)}
                   readOnly
                   className="border border-gray-300 rounded p-2 w-full"
                 />
