@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from ".";
 
-const BASE_URL = "http://localhost:3000/api";
+const BASE_URL = "https://quotation-app-server-production.up.railway.app/api";
 
 export interface QuotesState {
   data: any;
