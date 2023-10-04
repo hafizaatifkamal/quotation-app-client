@@ -69,6 +69,18 @@ export const updateQuote = createAsyncThunk(
   }
 );
 
+export const deleteQuote = createAsyncThunk(
+  `quotes/delete`,
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`${BASE_URL}/quotes/${id}`);
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(error?.response?.data?.message);
+    }
+  }
+);
+
 export const quotesSlice = createSlice({
   name: "quotes",
   initialState,
@@ -117,6 +129,17 @@ export const quotesSlice = createSlice({
         state.status = "idle";
       })
       .addCase(updateQuote.rejected, (state: any) => {
+        state.status = "failed";
+      });
+
+    builder
+      .addCase(deleteQuote.pending, (state: any) => {
+        state.status = "loading";
+      })
+      .addCase(deleteQuote.fulfilled, (state: any) => {
+        state.status = "idle";
+      })
+      .addCase(deleteQuote.rejected, (state: any) => {
         state.status = "failed";
       });
   },

@@ -4,9 +4,10 @@ import { DeleteIcon } from "../assets/Icons";
 
 interface QuoteProps {
   quote: any;
+  onDelete: (id: string) => void;
 }
 
-const Quote: React.FC<QuoteProps> = ({ quote }) => {
+const Quote: React.FC<QuoteProps> = ({ quote, onDelete }) => {
   return (
     <div className="max-w-xs rounded overflow-hidden shadow-lg">
       <div className="px-6 py-4">
@@ -18,7 +19,7 @@ const Quote: React.FC<QuoteProps> = ({ quote }) => {
         </div>
         <div className="flex justify-between">
           <p className="text-gray-700 text-2xl font-bold">{`₹ ${quote.totalAmount}`}</p>
-          <button>
+          <button onClick={() => onDelete(quote._id)}>
             <DeleteIcon />
           </button>
         </div>

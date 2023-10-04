@@ -1,28 +1,29 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAppDisptach, useAppSelector } from "../store/hooks";
 import {
+  deleteQuote,
   fetchAllQuotes,
-  // removeQuote,
   selectQuotes,
 } from "../store/quotesSlice";
 import Quote from "./Quote";
 import { AddIcon } from "../assets/Icons";
-import { useAppDisptach, useAppSelector } from "../store/hooks";
 
 const AllQuotes: React.FC = () => {
   const dispatch = useAppDisptach();
 
-  const { data, status } = useAppSelector(selectQuotes);
+  const { data } = useAppSelector(selectQuotes);
 
   useEffect(() => {
     // @ts-ignore
     dispatch(fetchAllQuotes());
   }, [dispatch]);
 
-  // const handleDelete = (_id: string) => {
-  //   // @ts-ignore
-  //   dispatch(removeQuote(_id));
-  // };
+  const handleDelete = async (_id: string) => {
+    await dispatch(deleteQuote(_id));
+    // @ts-ignore
+    dispatch(fetchAllQuotes());
+  };
 
   return (
     <>
@@ -35,23 +36,11 @@ const AllQuotes: React.FC = () => {
       </div>
       <div className="flex flex-wrap gap-10">
         {data.map((quote: any) => (
-          // <li key={quote._id} className="mb-4">
-          //   <div className="flexblue justify-between items-center">
-          //     <Link
-          //       to={`/edit/${quote._id}`}
-          //       className="text-blue-500 underline"
-          //     >
-          //       {quote.name}
-          //     </Link>
-          //     <button
-          //       onClick={() => handleDelete(quote._id)}
-          //       className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded"
-          //     >
-          //       Delete
-          //     </button>
-          //   </div>
-          // </li>
-          <Quote key={quote._id} quote={quote} />
+          <Quote
+            key={quote._id}
+            quote={quote}
+            onDelete={() => handleDelete(quote._id)}
+          />
         ))}
       </div>
     </>
