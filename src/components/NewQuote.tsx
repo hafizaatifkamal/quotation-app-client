@@ -41,6 +41,7 @@ const NewQuote: React.FC = () => {
               value={quoteData.name}
               onChange={handleChange}
               className="border border-gray-300 rounded p-2 w-full"
+              required
             />
           </div>
           <div className="mb-4">
@@ -51,6 +52,7 @@ const NewQuote: React.FC = () => {
               value={quoteData.expiryDate}
               onChange={handleChange}
               className="border border-gray-300 rounded p-2 w-full"
+              required
             />
           </div>
           <div className="mb-4">
@@ -70,6 +72,7 @@ const NewQuote: React.FC = () => {
               value={quoteData.status}
               onChange={handleChange}
               className="border border-gray-300 rounded p-2 w-full"
+              required
             >
               <option value="valid">Valid</option>
               <option value="expired">Expired</option>
