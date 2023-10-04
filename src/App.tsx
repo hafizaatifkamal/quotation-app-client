@@ -6,7 +6,7 @@ import NewQuote from "./components/NewQuote";
 function App() {
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="bg-blue-500 p-4">
+      <header className="bg-gray-500 p-4">
         <h1 className="text-2xl text-white font-semibold">Quotation App</h1>
       </header>
       <main className="container mx-auto mt-8 p-4">

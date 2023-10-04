@@ -9,7 +9,7 @@ const NewQuote: React.FC = () => {
   const [quoteData, setQuoteData] = useState({
     name: "",
     expiryDate: "",
-    status: "",
+    status: "valid",
     totalAmount: 0,
     files: [], // You can handle file uploads here
     tables: [], // You can handle table data here
@@ -24,12 +24,7 @@ const NewQuote: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Handle the submission of the new quote data here
-    console.log("New quote data:", quoteData);
     dispatch(createQuote(quoteData));
-
-    // You can dispatch an action to send the data to the server and update the Redux store
     navigate("/");
   };
 
@@ -83,7 +78,7 @@ const NewQuote: React.FC = () => {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+              className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
             >
               Create Quote
             </button>

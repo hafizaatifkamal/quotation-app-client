@@ -46,7 +46,7 @@ const EditQuote: React.FC = () => {
         <h2 className="text-2xl font-semibold mb-4">Edit Quote</h2>
         <button
           onClick={handleEditToggle}
-          className="bg-blue-500 text-white px-2 rounded-md hover:bg-blue-600"
+          className="bg-gray-500 text-white px-2 rounded-md hover:bg-gray-600"
         >
           {isEditing ? "Cancel Edit" : "Edit Quote"}
         </button>
@@ -100,7 +100,7 @@ const EditQuote: React.FC = () => {
               <div className="text-center mb-2">
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                  className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
                 >
                   Save
                 </button>
